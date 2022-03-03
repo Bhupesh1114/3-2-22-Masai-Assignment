@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container>form {
+            background-color: blueviolet;
+            padding: 20px;
+            border-radius: 5px;
+            width: 350px;
+            height: 400px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
+        #container>form>input {
+            width: 96%;
+            padding: 10px 10px 10px 0px;
+            font-size: 20px;
+            border: none;
+            border-bottom: 2px solid #fff;
+            background-color: blueviolet;
+            color: #fff;
+            margin: 10px 0px 20px 0px;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px blueviolet inset !important;
+            -webkit-text-fill-color: white !important;
+        }
+
+        #container>form>label {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        #container>form>input[type=submit] {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            margin-top: 40px;
+            color: #000;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-transform: uppercase;
+        }
+
+        #container>form>input[type=submit]:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        #container>form>input[type=submit]:focus {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <form action="" id="form">
+            <label for="name">Enter Name</label><br>
+            <input name="name" type="text" required autofocus><br>
+            <label for="number">Enter Number</label><br>
+            <input type="number" required><br>
+            <label for="city">Enter City</label><br>
+            <input type="text" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <script>
+        let student = JSON.parse(localStorage.getItem('student')) || [];
+        function Student(name, number, city) {
+            this.name = name;
+            this.number = number;
+            this.city = city;
+        }
+
+        document.querySelector("#form").addEventListener("submit", addData);
+
+        function addData(event) {
+           event.preventDefault();
+            let name = document.querySelector("#form >input:nth-child(3)").value;
+            let number = document.querySelector("#form >input:nth-child(7)").value;
+            let city = document.querySelector("#form >input:nth-child(11)").value;
+
+            if(number.length !== 10){
+                alert("Mobile number should have 10 characters")
+            }else{
+  
+                let obj = new Student(name,number,city);
+            student.push(obj);
+            localStorage.setItem("student",JSON.stringify(student));
+
+            document.querySelector("#form >input:nth-child(3)").value = "";
+            document.querySelector("#form >input:nth-child(7)").value = "";
+            document.querySelector("#form >input:nth-child(11)").value = "";
+            alert("Details Stored")
+            window.location.href = "./display.html";
+            }
+          
+        }
+
+
+    </script>
+</body>
+
+</html>

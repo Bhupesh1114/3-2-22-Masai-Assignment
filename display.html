@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+           font-family: sans-serif;
+        }
+        #container {
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height:100vh;
+        }
+        #div{
+            background-color: blueviolet;
+            width:700px;
+           padding:20px;
+           border-radius: 5px;
+           box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    #div > div{
+ display: flex;
+ color: #FFFF;
+ justify-content: center;
+    }
+
+    #div > div >p{
+        width:30%;
+        border:1px solid #fff;
+        padding:10px;
+        font-size:20px;
+    }
+    </style>
+</head>
+<div id="container">
+    <div id="div"></div>
+</div>
+
+<body>
+    
+    <script>
+        let studentData = JSON.parse(localStorage.getItem("student"));
+         mapData(studentData);
+        function mapData(data){
+            data.map(function(elem,ind,arr){
+                let div = document.createElement("div");
+         let p1 = document.createElement("p");
+         p1.innerText = elem.name;
+         let p2 = document.createElement("p");
+         p2.innerText = elem.number;
+         let p3 = document.createElement("p");
+         p3.innerText = elem.city
+         div.append(p1,p2,p3);
+          document.querySelector("#div").append(div);
+            })
+        
+        }
+    </script>
+</body>
+</html>
